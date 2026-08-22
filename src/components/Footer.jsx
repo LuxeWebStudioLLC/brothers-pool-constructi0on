@@ -117,9 +117,14 @@ export default function Footer() {
           <p className="font-sans text-[0.75rem] text-white/30">
             © {new Date().getFullYear()} {company.name}. All rights reserved.
           </p>
-          <p className="font-sans text-[0.75rem] text-white/30">
-            Licensed &amp; insured · South Carolina &amp; Georgia
-          </p>
+          <div className="flex items-center gap-5">
+            <a href="/privacy" className="link-draw font-sans text-[0.75rem] text-white/30 hover:text-white/60">
+              Privacy Policy
+            </a>
+            <p className="font-sans text-[0.75rem] text-white/30">
+              Licensed &amp; insured · South Carolina &amp; Georgia
+            </p>
+          </div>
         </div>
       </div>
 
