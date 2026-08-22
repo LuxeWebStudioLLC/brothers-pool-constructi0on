@@ -28,22 +28,31 @@ export default function Process() {
       )
 
       gsap.utils.toArray('[data-step]').forEach((step) => {
-        gsap.from(step, {
-          x: -26,
-          autoAlpha: 0,
-          duration: 1.05,
-          ease: 'expo.out',
-          scrollTrigger: enter(step, { start: 'top 84%' }),
-        })
-        // Node lights up when the step is reached.
+        gsap.fromTo(
+          step,
+          { x: -28, autoAlpha: 0 },
+          {
+            x: 0,
+            autoAlpha: 1,
+            ease: 'none',
+            scrollTrigger: { trigger: step, start: 'top 88%', end: 'top 62%', scrub: 0.5 },
+          }
+        )
+        // Scrubbed, not one-shot: the node transitions as you scroll it into
+        // place and reverses on the way back, so the rail reads as progress
+        // rather than six numbers that quietly changed colour at once.
         gsap.to(step.querySelector('[data-node]'), {
           backgroundColor: '#2FCFDC',
           borderColor: '#2FCFDC',
           color: '#05141C',
-          scale: 1.18,
-          duration: 0.5,
-          ease: 'expo.out',
-          scrollTrigger: { trigger: step, start: 'top 68%', once: true },
+          scale: 1.15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: step,
+            start: 'top 78%',
+            end: 'top 52%',
+            scrub: 0.6,
+          },
         })
       })
     }, root)

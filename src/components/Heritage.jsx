@@ -61,34 +61,37 @@ export default function Heritage() {
         })
       )
 
-      // Copy rises in and lifts away, tied to scroll — continuous movement, so
-      // nothing ever looks frozen.
+      // ONE timeline per era. Two separate scrubbed tweens both writing
+      // autoAlpha fought each other every frame, which made the copy snap off
+      // instead of fading. A single timeline owns the property end to end:
+      // rise in, hold legible for the long middle, lift away.
       const fades = []
       eras.forEach((el) => {
         const inner = el.querySelector('[data-era-inner]')
-        fades.push(
-          gsap.fromTo(
-            inner,
-            { autoAlpha: 0, y: 60 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              ease: 'none',
-              scrollTrigger: { trigger: el, start: 'top 82%', end: 'top 42%', scrub: 0.5 },
-            }
-          ),
-          gsap.to(inner, {
-            autoAlpha: 0,
-            y: -60,
-            ease: 'none',
-            scrollTrigger: { trigger: el, start: 'bottom 62%', end: 'bottom 22%', scrub: 0.5 },
-          })
+        // Spans the copy's whole transit through the viewport, so the fade has
+        // room to breathe at both ends instead of snapping off.
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: inner,
+            start: 'top bottom',   // the moment the copy enters from below
+            end: 'bottom top',     // until it has fully left the top
+            scrub: 1,              // lag smooths the whole transit
+          },
+          defaults: { force3D: true },
+        })
+        tl.fromTo(
+          inner,
+          { autoAlpha: 0, y: 80 },
+          { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }
         )
+          .to(inner, { duration: 1.9 })   // hold — the bulk of the transit
+          .to(inner, { autoAlpha: 0, y: -80, duration: 1, ease: 'power2.in' })
+        fades.push(tl)
       })
 
       return () => {
         triggers.forEach((t) => t.kill())
-        fades.forEach((f) => f.scrollTrigger?.kill())
+        fades.forEach((f) => { f.scrollTrigger?.kill(); f.kill() })
       }
     }, root)
 
@@ -152,7 +155,11 @@ export default function Heritage() {
             data-era
             className="shell flex min-h-[86svh] items-center py-16 lg:min-h-[92svh] lg:py-0"
           >
-            <div data-era-inner className="max-w-3xl pb-20 lg:pb-24">
+            <div
+              data-era-inner
+              className="max-w-3xl pb-20 lg:pb-24"
+              style={{ willChange: 'transform, opacity' }}
+            >
               <p className="font-sans text-[0.6875rem] uppercase tracking-[0.22em] text-white/45">
                 {t.chapter}
               </p>
