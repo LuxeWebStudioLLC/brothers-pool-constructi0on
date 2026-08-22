@@ -127,7 +127,7 @@ export default function ProjectGallery() {
             <Plus size={14} />
           </span>
           <span className="font-display text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-deep">
-            {open ? 'Close gallery' : `View all ${gallery.length} projects`}
+            {open ? 'Close gallery' : 'View gallery'}
           </span>
         </button>
       </div>
