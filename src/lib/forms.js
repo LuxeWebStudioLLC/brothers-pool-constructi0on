@@ -18,16 +18,6 @@ const SIMULATE = import.meta.env.VITE_FORM_SIMULATE === 'true'
 const LEADS_EMAIL = import.meta.env.VITE_LEADS_EMAIL || company.email
 
 /**
- * Extra recipients copied on every enquiry.
- *
- * FormSubmit only requires the address in the endpoint URL to be activated —
- * anyone on `_cc` receives the mail without confirming anything. That means
- * enquiries reach the business immediately instead of waiting on someone else
- * to click a link in their inbox.
- */
-const LEADS_CC = import.meta.env.VITE_LEADS_CC || ''
-
-/**
  * A 200 is not proof of delivery. FormSubmit answers 200 with
  * `{"success":"false"}` when a form is unactivated, and other services have
  * their own soft failures — so the body is inspected too. Anything short of a
@@ -96,7 +86,6 @@ export async function sendEnquiry(payload) {
     ...payload,
     _subject: `New website enquiry — ${payload.name || 'Unknown'}`,
     _to: LEADS_EMAIL,
-    ...(LEADS_CC ? { _cc: LEADS_CC } : {}),
     _replyto: payload.email,
     submittedAt: new Date().toISOString(),
     pageUrl: typeof window !== 'undefined' ? window.location.href : '',
@@ -118,32 +107,11 @@ export async function sendEnquiry(payload) {
     throw new Error('No form endpoint configured')
   }
 
+  // No fallback relay. Business enquiries go to the business and nowhere else —
+  // routing them through another inbox to dodge an activation step means the
+  // studio receives the client's leads, which is not ours to do.
   const res = await postJson(ENDPOINT, body)
-
-  try {
-    return await assertDelivered(res, 'Brothers Pool')
-  } catch (err) {
-    // FormSubmit refuses to deliver to an address until its owner clicks a
-    // one-time activation link. If that has not happened, the enquiry would
-    // simply be lost. Rather than drop a real lead, resend through the
-    // already-activated studio channel with the business copied in — only the
-    // endpoint address needs activating, CC recipients do not.
-    const needsActivation = /activat/i.test(err?.message || '')
-    if (!needsActivation || !STUDIO_ENDPOINT) throw err
-
-    // eslint-disable-next-line no-console
-    console.warn(
-      `[Brothers Pool] ${LEADS_EMAIL} has not activated FormSubmit — ` +
-        'delivering via the fallback channel so the enquiry is not lost.'
-    )
-    const relayed = await postJson(STUDIO_ENDPOINT, {
-      ...body,
-      _cc: LEADS_EMAIL,
-      _subject: `[Brothers Pool enquiry] ${payload.name || 'Unknown'}`,
-      deliveryNote: `Relayed: ${LEADS_EMAIL} has not activated its FormSubmit form.`,
-    })
-    return assertDelivered(relayed, 'Brothers Pool (relayed)')
-  }
+  return assertDelivered(res, 'Brothers Pool')
 }
 
 /**
