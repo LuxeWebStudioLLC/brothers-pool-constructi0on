@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-single
+.env
+.env.local
+.DS_Store
+_assets
+_backup
+_drop
+_incoming
+.review
+.vercel
