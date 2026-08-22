@@ -13,7 +13,7 @@ import { motionReady, useMotionGate } from '../lib/motion'
 
 const blank = {
   name: '', email: '', phone: '', city: '', address: '',
-  services: [], budget: '', timeline: '', message: '', consent: false,
+  services: [], budget: '', timeline: '', message: '',
 }
 
 export default function Contact() {
@@ -54,8 +54,9 @@ export default function Contact() {
     if (!emailRe.test(v.email)) e.email = 'We need a valid email to send your proposal.'
     if (!phoneRe.test(v.phone)) e.phone = 'A reachable phone number, please.'
     if (v.city.trim().length < 2) e.city = 'Which town or ZIP is the property in?'
-    if (!v.services.length) e.services = 'Pick at least one thing you need.'
-    if (!v.consent) e.consent = 'Please confirm we can contact you about this enquiry.'
+    // Services and consent are deliberately NOT required. Blocking a lead over
+    // an unticked checkbox loses the enquiry entirely; we can ask what they
+    // need when we call them back.
     return e
   }
 
@@ -70,7 +71,12 @@ export default function Contact() {
     }
     setState('sending')
     try {
-      await sendEnquiry({ ...v, services: v.services.join(', '), source: 'Contact section' })
+      await sendEnquiry({
+        ...v,
+        services: v.services.join(', ') || 'Not specified',
+        consent: 'Given by submitting the website enquiry form',
+        source: 'Contact section',
+      })
       setState('done')
     } catch {
       setState('error')
@@ -202,7 +208,8 @@ export default function Contact() {
                 <Legend n="02" title="What you're planning" className="mt-12" />
                 <fieldset className="mt-6">
                   <legend className="mb-4 font-sans text-[0.75rem] uppercase tracking-[0.18em] text-white/45">
-                    Services needed <span className="text-aqua">*</span>
+                    What are you thinking about?{' '}
+                    <span className="normal-case tracking-normal text-white/30">(optional)</span>
                   </legend>
                   <div className="flex flex-wrap gap-2.5" data-chip-error={errors.services ? '' : undefined}>
                     {serviceOptions.map((s) => {
@@ -256,31 +263,15 @@ export default function Contact() {
                   />
                 </div>
 
-                <label className="mt-8 flex cursor-pointer items-start gap-3.5">
-                  <span className="relative mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center">
-                    <input
-                      type="checkbox"
-                      checked={v.consent}
-                      onChange={set('consent')}
-                      className="peer sr-only"
-                      aria-invalid={!!errors.consent}
-                    />
-                    <span
-                      className={`flex h-5 w-5 items-center justify-center rounded-[2px] border transition-all duration-300 peer-focus-visible:ring-2 peer-focus-visible:ring-aqua/50 ${
-                        v.consent ? 'border-aqua bg-aqua text-ink' : errors.consent ? 'border-[#E4674F]' : 'border-white/25'
-                      }`}
-                    >
-                      {v.consent && <Check size={12} strokeWidth={3} />}
-                    </span>
-                  </span>
-                  <span className="font-sans text-[0.8125rem] leading-relaxed text-white/55">
-                    I&apos;m happy for {company.short} to contact me about this enquiry. We don&apos;t
-                    share your details and we don&apos;t send marketing you didn&apos;t ask for.
-                  </span>
-                </label>
-                {errors.consent && (
-                  <p className="mt-2 pl-9 font-sans text-[0.75rem] text-[#F2A08C]">{errors.consent}</p>
-                )}
+                <p className="mt-8 border-t border-white/10 pt-6 font-sans text-[0.8125rem] leading-relaxed text-white/45">
+                  By sending this you&apos;re happy for {company.short} to contact you about your
+                  enquiry. We don&apos;t share your details and we don&apos;t send marketing you
+                  didn&apos;t ask for &mdash;{' '}
+                  <a href="/privacy" className="link-draw font-medium text-white/70">
+                    privacy policy
+                  </a>
+                  .
+                </p>
 
                 <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
                   <p className="font-sans text-[0.75rem] text-white/40">

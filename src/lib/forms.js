@@ -34,6 +34,28 @@ const LEADS_CC = import.meta.env.VITE_LEADS_CC || ''
  * real send throws, which surfaces the "call us instead" message rather than a
  * thank-you the enquiry never earned.
  */
+/**
+ * A form service that stops responding must not leave the visitor staring at
+ * "Sending…" forever. Anything slower than this is treated as a failure, which
+ * surfaces the "call us instead" message.
+ */
+const SUBMIT_TIMEOUT_MS = 25000
+
+async function postJson(endpoint, body) {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS)
+  try {
+    return await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    })
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
 async function assertDelivered(res, label) {
   let data = null
   try {
@@ -96,11 +118,7 @@ export async function sendEnquiry(payload) {
     throw new Error('No form endpoint configured')
   }
 
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(body),
-  })
+  const res = await postJson(ENDPOINT, body)
   return assertDelivered(res, 'Brothers Pool')
 }
 
@@ -135,10 +153,6 @@ export async function sendStudioEnquiry(payload) {
     throw new Error('No studio form endpoint configured')
   }
 
-  const res = await fetch(STUDIO_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(body),
-  })
+  const res = await postJson(STUDIO_ENDPOINT, body)
   return assertDelivered(res, 'Luxe Web Studio')
 }
