@@ -48,13 +48,22 @@ export default function ProjectGallery() {
   useEffect(() => {
     if (!open || !motionReady() || !track.current) return
     const ctx = gsap.context(() => {
+      // Let the panel finish opening before the cards sweep in, otherwise both
+      // motions land at once and the whole thing reads as a snap.
       gsap.from('[data-gal-card]', {
-        x: 70,
+        x: 90,
         autoAlpha: 0,
-        duration: 1,
-        stagger: 0.06,
+        duration: 1.25,
+        stagger: 0.075,
         ease: 'expo.out',
-        delay: 0.15,
+        delay: 0.35,
+      })
+      gsap.from('[data-gal-controls]', {
+        y: 14,
+        autoAlpha: 0,
+        duration: 0.9,
+        delay: 0.25,
+        ease: 'expo.out',
       })
     }, region)
     return () => ctx.revert()
@@ -137,13 +146,13 @@ export default function ProjectGallery() {
         id="project-archive"
         role="region"
         aria-label="Full project gallery"
-        className="grid w-full min-w-0 overflow-hidden transition-[grid-template-rows,opacity] duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="grid w-full min-w-0 overflow-hidden transition-[grid-template-rows,opacity] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ gridTemplateRows: open ? '1fr' : '0fr', opacity: open ? 1 : 0 }}
       >
         <div className="min-h-0 min-w-0">
           <div className="w-full min-w-0 pt-12">
             {/* controls */}
-            <div className="shell mb-6 flex items-center justify-between gap-6">
+            <div data-gal-controls className="shell mb-6 flex items-center justify-between gap-6">
               <p className="font-sans text-[0.75rem] uppercase tracking-[0.2em] text-graphite/70">
                 Drag, swipe or scroll sideways
               </p>
@@ -167,7 +176,7 @@ export default function ProjectGallery() {
             <div
               ref={track}
               tabIndex={0}
-              className="no-scrollbar flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] focus:outline-none"
+              className="no-scrollbar flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] focus:outline-none"
               style={{
                 cursor: 'grab',
                 // Visual lead-in aligned to the shell...

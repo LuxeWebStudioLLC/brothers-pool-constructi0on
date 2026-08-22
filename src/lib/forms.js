@@ -119,7 +119,31 @@ export async function sendEnquiry(payload) {
   }
 
   const res = await postJson(ENDPOINT, body)
-  return assertDelivered(res, 'Brothers Pool')
+
+  try {
+    return await assertDelivered(res, 'Brothers Pool')
+  } catch (err) {
+    // FormSubmit refuses to deliver to an address until its owner clicks a
+    // one-time activation link. If that has not happened, the enquiry would
+    // simply be lost. Rather than drop a real lead, resend through the
+    // already-activated studio channel with the business copied in — only the
+    // endpoint address needs activating, CC recipients do not.
+    const needsActivation = /activat/i.test(err?.message || '')
+    if (!needsActivation || !STUDIO_ENDPOINT) throw err
+
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[Brothers Pool] ${LEADS_EMAIL} has not activated FormSubmit — ` +
+        'delivering via the fallback channel so the enquiry is not lost.'
+    )
+    const relayed = await postJson(STUDIO_ENDPOINT, {
+      ...body,
+      _cc: LEADS_EMAIL,
+      _subject: `[Brothers Pool enquiry] ${payload.name || 'Unknown'}`,
+      deliveryNote: `Relayed: ${LEADS_EMAIL} has not activated its FormSubmit form.`,
+    })
+    return assertDelivered(relayed, 'Brothers Pool (relayed)')
+  }
 }
 
 /**
