@@ -46,7 +46,7 @@ export default function Footer() {
           <div>
             <img src="/img/logo.png" alt={company.name} className="h-8 w-auto" />
             <p className="mt-6 max-w-xs text-pretty font-sans text-[0.875rem] leading-relaxed text-white/45">
-              Custom gunite pool construction, renovation, hardscapes and outdoor living across
+              Custom shotcrete pool construction, renovation, hardscapes and outdoor living across
               coastal South Carolina. Family run since {company.founded}.
             </p>
             <div className="mt-7 flex items-center gap-3">

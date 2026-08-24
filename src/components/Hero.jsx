@@ -77,7 +77,7 @@ export default function Hero() {
         <img
           data-hero-media
           src="/img/hero-pool.jpg"
-        alt="Aerial view of a Brothers Pool Construction gunite pool with raised spa on a waterfront lot near Myrtle Beach"
+        alt="Aerial view of a Brothers Pool Construction shotcrete pool with raised spa on a waterfront lot near Myrtle Beach"
           className="absolute inset-0 h-[118%] w-full object-cover"
           style={{ willChange: 'transform' }}
           fetchPriority="high"
@@ -121,7 +121,7 @@ export default function Hero() {
           data-hero-sub
           className="mx-auto mt-8 max-w-2xl text-pretty font-sans text-[1.0625rem] leading-relaxed text-white/70 lg:text-lg"
         >
-          Three decades of gunite construction, renovation and outdoor living across the Grand
+          Three decades of shotcrete construction, renovation and outdoor living across the Grand
           Strand — designed, poured and finished by our own crews.
         </p>
 

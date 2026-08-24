@@ -95,7 +95,7 @@ export default function Craft() {
           </SplitHeading>
           <ScrubText className="mt-7 max-w-xl text-pretty font-sans text-[1.0625rem] leading-relaxed text-white lg:text-[1.125rem]">
             What decides whether a pool still looks right in twenty years is underneath it — how the
-            steel was tied, how the gunite was shot and cured, how the finish was bonded. We came up
+            steel was tied, how the shotcrete was shot and cured, how the finish was bonded. We came up
             through the finish trade, so that is where we refuse to cut corners.
           </ScrubText>
 
@@ -124,7 +124,7 @@ export default function Craft() {
             <img
               data-craft-img
               src="/img/pool-freeform.jpg"
-              alt="Freeform gunite pool with spa and travertine paver deck built by Brothers Pool Construction"
+              alt="Freeform shotcrete pool with spa and travertine paver deck built by Brothers Pool Construction"
               loading="lazy"
               className="absolute inset-0 h-[118%] w-full object-cover"
               style={{ willChange: 'transform' }}

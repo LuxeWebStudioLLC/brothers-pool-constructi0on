@@ -56,7 +56,7 @@ export const nav = [
 
 export const trust = [
   { label: 'Building pools since 1992', icon: 'calendar' },
-  { label: 'In-house gunite & plaster crews', icon: 'trowel' },
+  { label: 'In-house shotcrete & plaster crews', icon: 'trowel' },
   { label: 'Licensed & insured in SC and GA', icon: 'shield' },
 ]
 
@@ -122,7 +122,7 @@ export const differentiators = [
     n: '02',
     title: 'Our own crews, start to finish',
     body:
-      'Steel, gunite, plaster, tile and deck are all in-house. That is why our schedules hold and why there is only ever one company answering for the work.',
+      'Steel, shotcrete, plaster, tile and deck are all in-house. That is why our schedules hold and why there is only ever one company answering for the work.',
   },
   {
     n: '03',
@@ -161,7 +161,7 @@ export const process = [
     n: '04',
     title: 'Steel, Plumbing & Shotcrete',
     body:
-      'Rebar is tied to spec, plumbing pressure-tested, then gunite is shot and cured. This is the structure — it is where our crews earn their reputation.',
+      'Rebar is tied to spec, plumbing pressure-tested, then shotcrete is shot and cured. This is the structure — it is where our crews earn their reputation.',
   },
   {
     n: '05',
