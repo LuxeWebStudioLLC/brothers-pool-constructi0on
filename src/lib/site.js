@@ -195,7 +195,7 @@ export const caseStudy = {
 
 export const projects = [
   { img: '/img/work/pool-01.jpg', title: 'Oceanfront Pool & Spa', meta: 'New construction', pos: 'center' },
-  { img: '/img/work/pool-02.jpg', title: 'Modern Rectangle & Raised Spa', meta: 'New construction', pos: 'center' },
+  { img: '/img/work/pool-02.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction', pos: 'center' },
   { img: '/img/work/pool-03.jpg', title: 'Pool, Spa & Paver Deck', meta: 'New construction', pos: 'center' },
   { img: '/img/work/pool-04.jpg', title: 'Rectangular Pool & Spillover Spa', meta: 'New construction', pos: 'center' },
 ]
@@ -207,7 +207,7 @@ export const projects = [
  */
 export const gallery = [
   { img: '/img/work/pool-01.jpg', title: 'Oceanfront Pool & Spa', meta: 'New construction' },
-  { img: '/img/work/pool-02.jpg', title: 'Modern Rectangle & Raised Spa', meta: 'New construction' },
+  { img: '/img/work/pool-02.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction' },
   { img: '/img/work/pool-03.jpg', title: 'Pool, Spa & Paver Deck', meta: 'New construction' },
   { img: '/img/work/pool-04.jpg', title: 'Rectangular Pool & Spillover Spa', meta: 'New construction' },
   { img: '/img/work/pool-05.jpg', title: 'Rectangular Pool & Patio', meta: 'New construction' },
