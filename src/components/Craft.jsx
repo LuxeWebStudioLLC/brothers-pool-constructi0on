@@ -95,8 +95,8 @@ export default function Craft() {
           </SplitHeading>
           <ScrubText className="mt-7 max-w-xl text-pretty font-sans text-[1.0625rem] leading-relaxed text-white lg:text-[1.125rem]">
             What decides whether a pool still looks right in twenty years is underneath it — how the
-            steel was tied, how the shotcrete was shot and cured, how the finish was bonded. We came up
-            through the finish trade, so that is where we refuse to cut corners.
+            steel was tied, how the shotcrete was shot and cured, how the finish was bonded. We refuse
+            to cut corners.
           </ScrubText>
 
           <Reveal className="mt-11 grid grid-cols-2 gap-x-8 gap-y-9" stagger={0.1} y={26}>

@@ -65,7 +65,7 @@ export const services = [
     n: '01',
     title: 'Pool Construction',
     blurb:
-      'Shotcrete pools engineered from design to first fill. Steel, plumbing, shell and finish are all set by our own crews — no handoffs, no subcontracted guesswork.',
+      'Shotcrete pools engineered from design to first fill. Steel, plumbing, shell and finish are all set by our crews, no guesswork.',
     points: ['Custom shotcrete shells', 'Spas & water features', 'Automation & lighting'],
     icon: 'construction',
   },

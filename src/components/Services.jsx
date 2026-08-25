@@ -48,8 +48,8 @@ export default function Services() {
           </div>
           <Reveal y={20} delay={0.15} className="lg:pb-2">
             <p className="text-pretty font-sans text-[1.0625rem] leading-relaxed text-graphite">
-              Everything from the first survey stake to the last paver is handled by people on our
-              payroll. That is the whole reason the work holds up.
+              Everything from the first survey stake to the last paver is handled by quality
+              professionals, ensuring our work will last.
             </p>
             <a href="#contact" className="link-draw mt-6 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-deep">
               Start a project <Arrow size={15} />
