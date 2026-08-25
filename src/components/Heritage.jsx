@@ -118,8 +118,8 @@ export default function Heritage() {
             alt=""
             aria-hidden="true"
             decoding="async"
-            loading={i === 0 ? 'eager' : 'lazy'}
-            fetchPriority={i === 0 ? 'auto' : 'low'}
+            loading="lazy"
+            fetchPriority="low"
             className="absolute inset-0 h-full w-full object-cover"
             style={{ willChange: 'opacity', filter: t.tone || 'none' }}
           />
