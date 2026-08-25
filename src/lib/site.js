@@ -71,6 +71,14 @@ export const services = [
   },
   {
     n: '02',
+    title: 'Screen Enclosures',
+    blurb:
+      'Protect your outdoor living space from the elements, pests and debris with our engineered premium screens.',
+    points: ['Engineered aluminium frames', 'Premium screen mesh', 'Pool & patio enclosures'],
+    icon: 'screen',
+  },
+  {
+    n: '03',
     title: 'Pool Renovation',
     blurb:
       'Tired shells brought back to current standards. New interior finish, tile, coping and equipment — make your pool new again.',
@@ -78,7 +86,7 @@ export const services = [
     icon: 'renovation',
   },
   {
-    n: '03',
+    n: '04',
     title: 'Hardscapes',
     blurb:
       'Travertine, paver and synthetic turf work that ties the pool into the property. Set on properly compacted base so the deck stays true for decades.',
@@ -86,20 +94,12 @@ export const services = [
     icon: 'hardscape',
   },
   {
-    n: '04',
+    n: '05',
     title: 'Outdoor Living',
     blurb:
       'Kitchens, pergolas and lighting designed alongside the pool — so the whole yard lives as one space.',
     points: ['Outdoor kitchens', 'Pergolas & shade', 'Landscape lighting'],
     icon: 'outdoor',
-  },
-  {
-    n: '05',
-    title: 'Screen Enclosures',
-    blurb:
-      'Protect your outdoor living space from the elements, pests and debris with our engineered premium screens.',
-    points: ['Engineered aluminium frames', 'Premium screen mesh', 'Pool & patio enclosures'],
-    icon: 'screen',
   },
 ]
 
@@ -330,10 +330,10 @@ export const faqs = [
 
 export const serviceOptions = [
   'New Pool Construction',
+  'Screen Enclosures',
   'Pool Renovation',
   'Hardscapes',
   'Outdoor Living',
-  'Screen Enclosures',
 ]
 
 /** Budget slider bounds, in thousands. Top of the range reads as "150k+". */
