@@ -25,7 +25,15 @@ export default function Heritage() {
       const ticks = gsap.utils.toArray('[data-era-tick]')
       const eras = gsap.utils.toArray('[data-era]')
 
-      medias.forEach((img) => img.decode?.().catch(() => {}))
+      // Warm the backdrops only once the story is within a screen or so of
+      // view. Decoding on mount pulled ~1.9MB down before the hero had even
+      // painted, which is what made phones feel sluggish.
+      ScrollTrigger.create({
+        trigger: root.current,
+        start: 'top bottom+=120%',
+        once: true,
+        onEnter: () => medias.forEach((img) => img.decode?.().catch(() => {})),
+      })
 
       const activate = (i) => {
         medias.forEach((m, j) =>
@@ -102,7 +110,7 @@ export default function Heritage() {
     <section ref={root} id="about" className="relative isolate bg-ink">
       {/* ── Sticky media layer ──────────────────────────────────────────── */}
       <div className="sticky top-0 h-svh w-full overflow-hidden">
-        {timeline.map((t) => (
+        {timeline.map((t, i) => (
           <img
             key={`m-${t.year}`}
             data-era-media
@@ -110,6 +118,8 @@ export default function Heritage() {
             alt=""
             aria-hidden="true"
             decoding="async"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchPriority={i === 0 ? 'auto' : 'low'}
             className="absolute inset-0 h-full w-full object-cover"
             style={{ willChange: 'opacity', filter: t.tone || 'none' }}
           />
