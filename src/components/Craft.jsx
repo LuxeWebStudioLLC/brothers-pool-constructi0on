@@ -133,9 +133,9 @@ export default function Craft() {
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 border-t border-white/15 bg-ink/70 p-6 backdrop-blur-md">
-            <p className="eyebrow text-aqua">In-house since 1992</p>
+            <p className="eyebrow text-aqua">Building since 1992</p>
             <p className="mt-3 text-pretty font-serif text-[1.125rem] leading-snug text-white">
-              Steel, shotcrete, plaster, tile and deck — all set by the same crew, in the right order.
+              Steel, shotcrete, plaster, tile and deck — all set in the right order, to one standard.
             </p>
           </div>
         </div>

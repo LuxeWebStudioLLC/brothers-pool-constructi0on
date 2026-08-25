@@ -122,7 +122,7 @@ export default function Hero() {
           className="mx-auto mt-8 max-w-2xl text-pretty font-sans text-[1.0625rem] leading-relaxed text-white/70 lg:text-lg"
         >
           Three decades of shotcrete construction, renovation and outdoor living across the Grand
-          Strand — designed, poured and finished by our own crews.
+          Strand — designed, poured and finished to one standard.
         </p>
 
         <div className="mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">

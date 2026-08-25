@@ -56,7 +56,7 @@ export const nav = [
 
 export const trust = [
   { label: 'Building pools since 1992', icon: 'calendar' },
-  { label: 'In-house shotcrete & plaster crews', icon: 'trowel' },
+  { label: 'Shotcrete & plaster specialists', icon: 'trowel' },
   { label: 'Licensed & insured in SC and GA', icon: 'shield' },
 ]
 
@@ -228,17 +228,6 @@ export const gallery = [
   { img: '/img/work/pool-20.jpg', title: 'Interior Finish & Tile', meta: 'Finish detail' },
   { img: '/img/work/pool-21.jpg', title: 'Spa Jets', meta: 'Spa & water feature' },
   { img: '/img/work/pool-22.jpg', title: 'Entry Steps', meta: 'Finish detail' },
-  { img: '/img/work/pool-23.jpg', title: 'Freeform Pool & Terrace', meta: 'Design concept' },
-  { img: '/img/work/pool-24.jpg', title: 'Freeform Pool & Spa', meta: 'Design concept' },
-  { img: '/img/work/pool-25.jpg', title: 'Freeform Pool & Patio', meta: 'Design concept' },
-  { img: '/img/work/pool-26.jpg', title: 'Pool, Spa & Sun Deck', meta: 'Design concept' },
-  { img: '/img/work/pool-27.jpg', title: 'Rectangular Pool & Pavilion', meta: 'Design concept' },
-  { img: '/img/work/pool-28.jpg', title: 'Pool, Spa & Lounge Terrace', meta: 'Design concept' },
-  { img: '/img/work/pool-29.jpg', title: 'Pool & Spa, Modern Home', meta: 'Design concept' },
-  { img: '/img/work/pool-30.jpg', title: 'Pool, Spa & Deck', meta: 'Design concept' },
-  { img: '/img/work/pool-31.jpg', title: 'Pool, Spa & Planting', meta: 'Design concept' },
-  { img: '/img/work/pool-32.jpg', title: 'Pool & Fire Pit, Evening', meta: 'Design concept' },
-  { img: '/img/work/pool-33.jpg', title: 'Freeform Pool & Spa Terrace', meta: 'Design concept' },
   { img: '/img/work/pool-34.jpg', title: 'Screen Enclosure Built Over Stunning Pool', meta: 'Screen enclosure' },
 ]
 
