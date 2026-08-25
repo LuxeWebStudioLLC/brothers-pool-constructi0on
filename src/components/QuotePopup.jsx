@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '../lib/anim'
-import { company } from '../lib/site'
+import { company, budgetRange } from '../lib/site'
 import { emailRe, phoneRe, formatPhone, sendEnquiry } from '../lib/forms'
+import BudgetSlider from './BudgetSlider'
 import { Arrow, Check, Phone } from './Icons'
 import { motionReady } from '../lib/motion'
 
@@ -19,7 +20,7 @@ const DELAY_MS = 3200
  */
 export default function QuotePopup() {
   const [open, setOpen] = useState(false)
-  const [v, setV] = useState({ name: '', phone: '', email: '' })
+  const [v, setV] = useState({ name: '', phone: '', email: '', budget: budgetRange.min, budgetTouched: false })
   const [errors, setErrors] = useState({})
   const [state, setState] = useState('idle')
   const card = useRef(null)
@@ -75,17 +76,21 @@ export default function QuotePopup() {
     const next = {}
     if (v.name.trim().length < 2) next.name = 'Your name'
     if (!phoneRe.test(v.phone)) next.phone = 'A number we can call'
-    if (v.email && !emailRe.test(v.email)) next.email = 'Check this address'
+    if (!emailRe.test(v.email)) next.email = 'A valid email address'
     setErrors(next)
     if (Object.keys(next).length) return
     setState('sending')
     try {
+      const { budgetTouched, budget, ...rest } = v
       await sendEnquiry({
-        ...v,
-        email: v.email || 'Not given',
+        ...rest,
         city: 'Not specified',
         services: 'Not specified',
-        budget: 'Not specified',
+        budget: budgetTouched
+          ? budget >= budgetRange.max
+            ? `$${budgetRange.max},000+`
+            : `$${budget},000`
+          : 'Not specified',
         message: 'Sent from the quick-quote prompt.',
         consent: 'Given by submitting the website enquiry form',
         source: 'Quick quote prompt',
@@ -140,7 +145,7 @@ export default function QuotePopup() {
           <form onSubmit={submit} noValidate className="px-6 pb-6 pt-7">
             <p className="eyebrow eyebrow-ember text-aqua-lit">Free consultation</p>
             <p className="mt-3 text-balance font-serif text-[1.375rem] leading-snug text-white">
-              Thinking about a pool?
+              Thinking about a project?
             </p>
             <p className="mt-2 font-sans text-[0.8125rem] leading-relaxed text-white/55">
               Leave a number and we&apos;ll call you back — no obligation.
@@ -157,7 +162,16 @@ export default function QuotePopup() {
               />
               <input
                 className={`field field-plain !py-3 !pt-3 ${errors.email ? 'field-err' : ''}`}
-                placeholder="Email (optional)" aria-label="Email" value={v.email} onChange={set('email')} autoComplete="email"
+                placeholder="Email" aria-label="Email" value={v.email} onChange={set('email')} autoComplete="email"
+              />
+            </div>
+
+            <div className="mt-5">
+              <BudgetSlider
+                className=""
+                value={v.budget}
+                touched={v.budgetTouched}
+                onChange={(n) => setV((p) => ({ ...p, budget: n, budgetTouched: true }))}
               />
             </div>
 

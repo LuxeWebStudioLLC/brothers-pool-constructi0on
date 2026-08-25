@@ -8,7 +8,7 @@ import { budgetRange } from '../lib/site'
  * always holds a value, and defaulting to one would attach a budget to every
  * enquiry whether or not they chose it, which is worse than no answer.
  */
-export default function BudgetSlider({ value, touched, onChange }) {
+export default function BudgetSlider({ value, touched, onChange, className = 'sm:col-span-2' }) {
   const { min, max, step } = budgetRange
   const ref = useRef(null)
 
@@ -20,7 +20,7 @@ export default function BudgetSlider({ value, touched, onChange }) {
       : `$${value},000`
 
   return (
-    <div className="sm:col-span-2">
+    <div className={className}>
       <div className="flex items-baseline justify-between gap-4">
         <span className="font-sans text-[0.75rem] uppercase tracking-[0.18em] text-white/45">
           Budget range{' '}
