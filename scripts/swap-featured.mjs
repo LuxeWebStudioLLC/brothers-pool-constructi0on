@@ -8,10 +8,10 @@ import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 
-const SRC = '_drop/swap'
-const TARGET = 'public/img/work/pool-02.jpg'
-const TITLE = 'Freeform Pool & Glass-Tile Spa'
-const META = 'New construction'
+const SRC = process.env.SRC || '_drop/swap'
+const TARGET = process.env.TARGET || 'public/img/work/pool-02.jpg'
+const TITLE = process.env.TITLE || 'Freeform Pool & Glass-Tile Spa'
+const META = process.env.META || 'New construction'
 
 const files = fs.existsSync(SRC)
   ? fs.readdirSync(SRC).filter((f) => /\.(jpe?g|png|heic|webp)$/i.test(f))
@@ -68,7 +68,7 @@ for (const arr of ['projects', 'gallery']) {
   const end = site.indexOf('\n]', start)
   let block = site.slice(start, end)
   block = block.replace(
-    /(\{ img: '\/img\/work\/pool-02\.jpg', title: ')[^']*(', meta: ')[^']*(')/,
+    new RegExp(`(\\{ img: '/img/work/${path.basename(TARGET)}', title: ')[^']*(', meta: ')[^']*(')`),
     `$1${TITLE}$2${META}$3`
   )
   site = site.slice(0, start) + block + site.slice(end)

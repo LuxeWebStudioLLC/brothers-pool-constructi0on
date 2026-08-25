@@ -197,7 +197,7 @@ export const projects = [
   { img: '/img/work/pool-01.jpg', title: 'Oceanfront Pool & Spa', meta: 'New construction', pos: 'center' },
   { img: '/img/work/pool-02.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction', pos: 'center' },
   { img: '/img/work/pool-03.jpg', title: 'Pool, Spa & Paver Deck', meta: 'New construction', pos: 'center' },
-  { img: '/img/work/pool-04.jpg', title: 'Rectangular Pool & Spillover Spa', meta: 'New construction', pos: 'center' },
+  { img: '/img/work/pool-04.jpg', title: 'Screened Enclosure, Pool & Spa', meta: 'Screen enclosure', pos: 'center' },
 ]
 
 /**
@@ -209,7 +209,7 @@ export const gallery = [
   { img: '/img/work/pool-01.jpg', title: 'Oceanfront Pool & Spa', meta: 'New construction' },
   { img: '/img/work/pool-02.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction' },
   { img: '/img/work/pool-03.jpg', title: 'Pool, Spa & Paver Deck', meta: 'New construction' },
-  { img: '/img/work/pool-04.jpg', title: 'Rectangular Pool & Spillover Spa', meta: 'New construction' },
+  { img: '/img/work/pool-04.jpg', title: 'Screened Enclosure, Pool & Spa', meta: 'Screen enclosure' },
   { img: '/img/work/pool-05.jpg', title: 'Rectangular Pool & Patio', meta: 'New construction' },
   { img: '/img/work/pool-06.jpg', title: 'Pool & Paver Patio', meta: 'New construction' },
   { img: '/img/work/pool-07.jpg', title: 'Pool, Raised Wall & Planting', meta: 'New construction' },
@@ -239,6 +239,7 @@ export const gallery = [
   { img: '/img/work/pool-31.jpg', title: 'Pool, Spa & Planting', meta: 'Design concept' },
   { img: '/img/work/pool-32.jpg', title: 'Pool & Fire Pit, Evening', meta: 'Design concept' },
   { img: '/img/work/pool-33.jpg', title: 'Freeform Pool & Spa Terrace', meta: 'Design concept' },
+  { img: '/img/work/pool-34.jpg', title: 'Screen Enclosure Built Over Stunning Pool', meta: 'Screen enclosure' },
 ]
 
 export const timeline = [
