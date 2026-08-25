@@ -195,9 +195,9 @@ export const caseStudy = {
 
 export const projects = [
   { img: '/img/work/pool-01.jpg', title: 'Oceanfront Pool & Spa', meta: 'New construction', pos: 'center' },
-  { img: '/img/work/pool-02.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction', pos: 'center' },
+  { img: '/img/work/pool-02-8d0c6f21.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction', pos: 'center' },
   { img: '/img/work/pool-03.jpg', title: 'Pool, Spa & Paver Deck', meta: 'New construction', pos: 'center' },
-  { img: '/img/work/pool-04.jpg', title: 'Screened Enclosure, Pool & Spa', meta: 'Screen enclosure', pos: 'center' },
+  { img: '/img/work/pool-04-4274aff7.jpg', title: 'Screened Enclosure, Pool & Spa', meta: 'Screen enclosure', pos: 'center' },
 ]
 
 /**
@@ -207,9 +207,9 @@ export const projects = [
  */
 export const gallery = [
   { img: '/img/work/pool-01.jpg', title: 'Oceanfront Pool & Spa', meta: 'New construction' },
-  { img: '/img/work/pool-02.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction' },
+  { img: '/img/work/pool-02-8d0c6f21.jpg', title: 'Freeform Pool & Glass-Tile Spa', meta: 'New construction' },
   { img: '/img/work/pool-03.jpg', title: 'Pool, Spa & Paver Deck', meta: 'New construction' },
-  { img: '/img/work/pool-04.jpg', title: 'Screened Enclosure, Pool & Spa', meta: 'Screen enclosure' },
+  { img: '/img/work/pool-04-4274aff7.jpg', title: 'Screened Enclosure, Pool & Spa', meta: 'Screen enclosure' },
   { img: '/img/work/pool-05.jpg', title: 'Rectangular Pool & Patio', meta: 'New construction' },
   { img: '/img/work/pool-06.jpg', title: 'Pool & Paver Patio', meta: 'New construction' },
   { img: '/img/work/pool-07.jpg', title: 'Pool, Raised Wall & Planting', meta: 'New construction' },
