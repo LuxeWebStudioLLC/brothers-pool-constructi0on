@@ -149,6 +149,9 @@
   .field:focus { border-color: var(--color-aqua); background: rgba(47,207,220,0.06); }
   .field-err { border-color: #E4674F !important; }
 
+  /* Inputs that rely on a visible placeholder rather than a floating label. */
+  .field-plain::placeholder { color: rgba(255,255,255,0.42); }
+
   .field-label {
     position: absolute; left: 1rem; top: 1.0625rem; pointer-events: none;
     font-size: 0.9375rem; color: rgba(255,255,255,0.45);

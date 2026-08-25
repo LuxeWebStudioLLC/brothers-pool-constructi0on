@@ -37,11 +37,16 @@ export default function PrivacyPage() {
             </P>
           </Section>
 
-          <Section title="This site does not use cookies">
+          <Section title="Cookies and what is stored on your device">
             <P>
               We set no cookies, and we run no analytics, advertising or session-tracking software.
-              Nothing is stored in your browser, and we do not build a profile of you or follow you
-              across other websites.
+              We do not build a profile of you or follow you across other websites.
+            </P>
+            <P>
+              One thing is saved locally: if you close the &ldquo;thinking about a pool?&rdquo;
+              prompt, your browser remembers that for a week so it does not reappear on every visit.
+              It is a single date stored on your own device, it is never sent to us, and clearing
+              your browsing data removes it.
             </P>
             <P>
               The one thing loaded from outside our own server is the typefaces, served by Google

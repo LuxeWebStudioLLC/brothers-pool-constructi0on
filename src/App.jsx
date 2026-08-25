@@ -15,6 +15,7 @@ import Testimonials from './components/Testimonials'
 import Process from './components/Process'
 import Faq from './components/Faq'
 import Footer from './components/Footer'
+import QuotePopup from './components/QuotePopup'
 
 export default function App() {
   // Images finishing late would otherwise leave every trigger measuring stale
@@ -50,6 +51,7 @@ export default function App() {
         <Faq />
       </main>
       <Footer />
+      <QuotePopup />
     </>
   )
 }
