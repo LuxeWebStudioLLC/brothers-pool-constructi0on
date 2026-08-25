@@ -340,7 +340,7 @@ export const serviceOptions = [
 export const budgetRange = {
   min: 45,
   max: 150,
-  step: 5,
+  step: 1,
 }
 
 export const timelineOptions = [
