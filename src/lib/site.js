@@ -336,15 +336,12 @@ export const serviceOptions = [
   'Screen Enclosures',
 ]
 
-export const budgetOptions = [
-  'Under $60k',
-  '$60k – $90k',
-  '$90k – $130k',
-  '$130k – $200k',
-  '$200k+',
-  'Custom range',
-  'Not sure yet',
-]
+/** Budget slider bounds, in thousands. Top of the range reads as "150k+". */
+export const budgetRange = {
+  min: 45,
+  max: 150,
+  step: 5,
+}
 
 export const timelineOptions = [
   'As soon as possible',

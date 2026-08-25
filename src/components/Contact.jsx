@@ -1,19 +1,20 @@
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { gsap } from '../lib/anim'
 import {
-  company, cities, serviceOptions, budgetOptions, timelineOptions,
+  company, cities, serviceOptions, budgetRange, timelineOptions,
 } from '../lib/site'
 import { emailRe, phoneRe, formatPhone, sendEnquiry } from '../lib/forms'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
 import Field from './Field'
+import BudgetSlider from './BudgetSlider'
 import ServiceMap from './ServiceMap'
 import { Phone, Mail, Pin, Calendar, Arrow, Check, Facebook } from './Icons'
 import { motionReady, useMotionGate } from '../lib/motion'
 
 const blank = {
   name: '', email: '', phone: '', city: '', address: '',
-  services: [], budget: '', timeline: '', message: '',
+  services: [], budget: budgetRange.min, budgetTouched: false, timeline: '', message: '',
 }
 
 export default function Contact() {
@@ -71,9 +72,15 @@ export default function Contact() {
     }
     setState('sending')
     try {
+      const { budgetTouched, budget, ...rest } = v
       await sendEnquiry({
-        ...v,
+        ...rest,
         services: v.services.join(', ') || 'Not specified',
+        budget: budgetTouched
+          ? budget >= budgetRange.max
+            ? `$${budgetRange.max},000+`
+            : `$${budget},000`
+          : 'Not specified',
         consent: 'Given by submitting the website enquiry form',
         source: 'Contact section',
       })
@@ -244,9 +251,13 @@ export default function Contact() {
                   )}
                 </fieldset>
 
-                <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                  <Field label="Budget range" name="budget" as="select" options={budgetOptions} value={v.budget} onChange={set('budget')} hint="Optional, but it keeps the design realistic." />
-                  <Field label="Ideal timeline" name="timeline" as="select" options={timelineOptions} value={v.timeline} onChange={set('timeline')} />
+                <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                  <BudgetSlider
+                    value={v.budget}
+                    touched={v.budgetTouched}
+                    onChange={(n) => setV((p) => ({ ...p, budget: n, budgetTouched: true }))}
+                  />
+                  <Field className="sm:col-span-2" label="Ideal timeline" name="timeline" as="select" options={timelineOptions} value={v.timeline} onChange={set('timeline')} />
                 </div>
 
                 {/* Step 3 */}
