@@ -8,7 +8,7 @@ import { motionReady } from '../lib/motion'
 
 const KEY = 'bpc:quote-prompt'
 const SNOOZE_DAYS = 7
-const DELAY_MS = 3200
+const DELAY_MS = 2500
 
 /**
  * Compact enquiry prompt shown shortly after load.
@@ -34,12 +34,11 @@ export default function QuotePopup() {
     }
     if (Date.now() < snoozedUntil) return
 
-    const show = () => setTimeout(() => setOpen(true), DELAY_MS)
-    if (document.readyState === 'complete') show()
-    else {
-      window.addEventListener('load', show, { once: true })
-      return () => window.removeEventListener('load', show)
-    }
+    // Timed from mount, not from window 'load'. Waiting for load meant waiting
+    // on every image, which on a phone pushed this out to nearly nine seconds —
+    // long enough that visitors had already scrolled past or left.
+    const t = setTimeout(() => setOpen(true), DELAY_MS)
+    return () => clearTimeout(t)
   }, [])
 
   const snooze = () => {
